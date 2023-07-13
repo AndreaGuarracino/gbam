@@ -89,7 +89,7 @@ impl Default for Stat {
 #[derive(Serialize, Deserialize, Clone, Default)]
 pub struct BlockMeta {
     pub seekpos: u64,
-    pub numitems: u32,
+    pub numitems: u64,
     pub block_size: u32,
     pub uncompressed_size: u64,
     pub stats: Option<Stat>,

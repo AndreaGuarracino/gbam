@@ -12,7 +12,7 @@ use std::convert::TryInto;
 use std::io::{Seek, SeekFrom, Write};
 
 pub(crate) struct BlockInfo {
-    pub numitems: u32,
+    pub numitems: u64,
     pub uncompr_size: usize,
     pub field: Fields,
     // Interpretation is up to the reader.
@@ -214,7 +214,7 @@ fn flush_field_buffer<WS: Write + Seek>(
 fn write_data_and_update_meta<WS: Write + Seek>(
     writer: &mut WS,
     file_meta: &mut FileMeta,
-    key: u32,
+    key: u64,
     task: &mut CompressTask,
 ) {
     let compressed_size = task.buf.len();
@@ -261,8 +261,8 @@ struct Inner {
     buffer: Vec<u8>,
     offset: usize,
     field: Fields,
-    rec_count: u32,
-    block_num: u32,
+    rec_count: u64,
+    block_num: u64,
 }
 
 impl Inner {
